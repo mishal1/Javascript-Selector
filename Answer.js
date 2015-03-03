@@ -22,17 +22,32 @@ function splitSelector(selector){
 
 function selectorHasClassOrId(selector, elements){
   var split = splitSelector(selector)
-  var somethingElse = findTagName(split[0])
-  for(var position = 0; position < somethingElse.length; position++){
-    if(somethingElse[position].className.indexOf(split[1]) != -1){
-      addElementToArray(somethingElse[position], elements)
-    }
-  }
+  selectorContainsAClass(elements, split)
 }
 
 function selectorDoesNotContainClassOrId(selector, elements){
   var item = findTagName(selector)
-  for(var position = 0; position < item.length; position++){
+  iterateThroughResults(item, elements)
+}
+
+function iterateThroughResults(item, elements){
+  for(var position = 0; position < item.length; position++) 
     addElementToArray(item[position], elements)
+}
+
+function checkElementContainsAClass(){
+  return somethingElse[position].className.indexOf(split[1]) != -1
+}
+
+function selectorContainsAClass(elements, split){
+  if(split.indexOf('') === -1){
+    var somethingElse = findTagName(split[0])
+    for(var position = 0; position < somethingElse.length; position++){
+      if(checkElementContainsAClass)
+        addElementToArray(somethingElse[position], elements)
+    }
+  } else {
+    var other = document.getElementsByClassName(split[1])
+    iterateThroughResults(other, elements)
   }
 }
