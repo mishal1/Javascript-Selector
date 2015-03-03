@@ -17,12 +17,16 @@ function addElementToArray(element, elements){
 }
 
 function splitSelector(selector){
-  return selector.split('.')
+  return selector.split(/\.|#/)
 }
 
 function selectorHasClassOrId(selector, elements){
   var split = splitSelector(selector)
-  selectorContainsAClass(elements, split)
+  if(selector.indexOf('.') === -1){
+    selectorContainsAnId(elements, split)
+  } else {
+    selectorContainsAClass(elements, split)
+  }
 }
 
 function selectorDoesNotContainClassOrId(selector, elements){
@@ -41,13 +45,30 @@ function checkElementContainsAClass(){
 
 function selectorContainsAClass(elements, split){
   if(split.indexOf('') === -1){
-    var somethingElse = findTagName(split[0])
-    for(var position = 0; position < somethingElse.length; position++){
-      if(checkElementContainsAClass)
-        addElementToArray(somethingElse[position], elements)
-    }
+    thing(checkElementContainsAClass, split, elements)
   } else {
     var other = document.getElementsByClassName(split[1])
     iterateThroughResults(other, elements)
   }
+}
+
+function selectorContainsAnId(elements, split){
+  if(split.indexOf('') === -1){
+    thing(checkElementContainsAnId, split, elements)
+  } else {
+    var other = document.getElementById(split[1])
+    addElementToArray(other, elements)
+  }
+}
+
+function thing(checkElement, split, elements){
+  var somethingElse = findTagName(split[0])
+  for(var position = 0; position < somethingElse.length; position++){
+    if(checkElement)
+      addElementToArray(somethingElse[position], elements)
+  }
+}
+
+function checkElementContainsAnId(){
+  return somethingElse[position].id.indexOf(split[1]) != -1
 }
