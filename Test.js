@@ -1,37 +1,37 @@
 var test$ = function() {
 window.answerList = {
-  A: $("div"),
-  B: $("img.some_class"),
-  C: $("#some_id"),
-  D: $(".some_class"),
-  E: $("input#some_id"),
-  F: $("div#some_id.some_class"),
-  G: $("div.some_class#some_id")
+  A: $("div")
+  // B: $("img.some_class")
+  // C: $("#some_id"),
+  // D: $(".some_class"),
+  // E: $("input#some_id"),
+  // F: $("div#some_id.some_class"),
+  // G: $("div.some_class#some_id")
 }
 
 var expectedResult = {
   A: {
     DIV: 2
   },
-  B: {
-    IMG: 1
-  },
-  C: {
-    DIV: 1
-  },
-  D: {
-    DIV: 1,
-    IMG: 1
-  },
-  E: {
-  },
-  F: {
-    DIV: 1
-  },
-  G: {
-    DIV: 1
-  },
-  questions: 7
+  // B: {
+  //   IMG: 1
+  // },
+  // C: {
+  //   DIV: 1
+  // },
+  // D: {
+  //   DIV: 1,
+  //   IMG: 1
+  // },
+  // E: {
+  // },
+  // F: {
+  //   DIV: 1
+  // },
+  // G: {
+  //   DIV: 1
+  // },
+  questions: 1
 }
 
 
