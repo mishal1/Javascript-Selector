@@ -22,7 +22,22 @@ function splitSelector(selector){
 
 function selectorHasClassOrId(selector, elements){
   var split = splitSelector(selector)
-  if(selector.indexOf('.') === -1){
+  if(selector.indexOf('.') != -1 && selector.indexOf('#') != -1){
+    var items= selector.split(/(?=\.)|(?=#)/)
+    if(items[1].indexOf('#') != -1){
+      var somethingElse = findTagName(split[0])
+      for(var position = 0; position < somethingElse.length; position++){
+        if(checkElementContainsAnId && somethingElse[position].className.indexOf(split[2]) != -1)
+          addElementToArray(somethingElse[position], elements)
+      }
+    } else {
+      var somethingElse = findTagName(split[0])
+      for(var position = 0; position < somethingElse.length; position++){
+        if(checkElementContainsAClass && somethingElse[position].id.indexOf(split[2]) != -1)
+          addElementToArray(somethingElse[position], elements)
+      }
+    }
+  } else if(selector.indexOf('.') === -1){
     selectorContainsAnId(elements, split)
   } else {
     selectorContainsAClass(elements, split)
